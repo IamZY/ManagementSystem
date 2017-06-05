@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ <!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+<struts>
+	<package name="struts" extends="struts-default">
+	
+	
+		<!-- 登录 -->
+		<action name="LoginAction" class="com.action.LoginAction" method="login">
+			<result name="success">/index.jsp</result>
+			<result name="false">/login.jsp</result>
+		</action>
+		
+		<!-- 考勤 -->
+		<action name="KQAction" class="com.action.KQAction" method="findKQSD">
+			<result name="success">/kqjl.jsp</result>
+		</action>
+		
+		<action name="saveKQAction" class="com.action.KQAction" method="saveKQ">
+			<result name="success">/index.jsp</result>
+		</action>
+		
+		
+		<action name="showKQAction" class="com.action.KQAction" method="showKQ">
+			<result name="success">/showKQList.jsp</result>
+		</action>
+		
+		<!-- 假期 -->
+		<action name="JQAction" class="com.action.JQAction" method="findJQLB">
+			<result name="success">/jq.jsp</result>
+		</action>
+		
+		
+		<action name="saveJQAction" class="com.action.JQAction" method="saveJQ">
+			<result name="success">/index.jsp</result>
+		</action>
+		
+		<action name="showJQAction" class="com.action.JQAction" method="showJQ">
+			<result name="success">/jqList.jsp</result>
+		</action>
+		
+		<!-- 出差 -->
+		<action name="CCAction" class="com.action.CCAction" method="findTypes">
+			<result name="success">/chuchai.jsp</result>
+		</action>
+		
+		<action name="saveCCAction" class="com.action.CCAction" method="saveCC">
+			<result name="success">/index.jsp</result>
+		</action>
+		
+		<action name="showCCAction" class="com.action.CCAction" method="showCC">
+			<result name="success">/ccList.jsp</result>
+		</action>
+		
+		
+		<!-- 加班 -->
+		<action name="saveJBAction" class="com.action.JBAction" method="saveJB">
+			<!--  
+			<result name="success" type="chain">showJBAction</result>
+			-->		
+			<result name="success">/index.jsp</result>
+		</action>
+		
+		
+		<action name="showJBAction" class="com.action.JBAction" method="showJB">
+			<result name="success">/jbList.jsp</result>
+		</action>
+		
+		<!-- 调休 -->
+		<action name="CalTXAction" class="com.action.TXAction" method="calTx">
+			<result name="success" type="stream">
+				<param name="contentType">text/html;charset=UTF-8</param>
+				<param name="inputName">ajaxInputStream</param>
+				<param name="bufferSize">1024</param>
+			</result>
+		</action>
+		
+		
+		<action name="saveTXAction" class="com.action.TXAction" method="saveTX">
+			<!-- 
+			<result name="success" type="chain">showTXAction</result>
+			 -->
+			<result name="success">/index.jsp</result>			 
+		</action>
+		
+		
+		<action name="showTXAction" class="com.action.TXAction" method="showTX">
+			<result name="success">/txList.jsp</result>
+		</action>
+		
+		
+		
+		<!-- 考勤记录 -->
+		<action name="findKQAction" class="com.action.TotalAction" method="calEmp">
+			<result name="success">/kqList.jsp</result>
+		</action>
+		
+		
+		<!-- 数据字典 -->
+		<action name="showSJZDAction" class="com.action.SJZDAction" method="showSJZD">
+			<result name="success">/sjzdList.jsp</result>
+		</action>
+		
+	</package>
+</struts>
