@@ -8,7 +8,9 @@
     <class name="com.domain.Sjzd" table="SJZD" schema="SCOTT">
         <id name="sno" type="java.lang.Long">
             <column name="SNO" precision="4" scale="0" />
-            <generator class="assigned" />
+            <generator class="sequence">
+            	<param name="sequence">BOTH_SEQ</param>
+            </generator>
         </id>
         <property name="lx" type="java.lang.String">
             <column name="LX" length="20" not-null="true" />

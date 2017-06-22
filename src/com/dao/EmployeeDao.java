@@ -4,7 +4,9 @@ import java.util.List;
 
 import org.hibernate.Query;
 import org.hibernate.Session;
+import org.hibernate.Transaction;
 
+import com.domain.Employee;
 import com.hibernate.HibernateSessionFactory;
 
 public class EmployeeDao {
@@ -40,6 +42,28 @@ public class EmployeeDao {
 		
 		return auth;
 	}
+	
+	
+	
+	
+	public boolean addEmp(Employee emp){
+		
+		boolean result = true;
+		
+		
+		Session session = HibernateSessionFactory.getSession();
+
+		Transaction tx = session.beginTransaction();
+		
+		
+		session.save(emp);
+		
+		tx.commit();
+		session.close();
+		
+		return result;
+	}
+	
 	
 	
 	

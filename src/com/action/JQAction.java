@@ -1,5 +1,6 @@
 package com.action;
 
+import java.io.UnsupportedEncodingException;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
@@ -18,7 +19,22 @@ public class JQAction {
 	private String day;
 	private String hour;
 	private List jQList = new ArrayList();
+	private String auth;
+	private String ename;
+	
+	
+	
 	/////////////////////////////////////////////////
+	
+	
+	
+	public String getAuth() {
+		return auth;
+	}
+
+	public void setAuth(String auth) {
+		this.auth = auth;
+	}
 	public List getJqList() {
 		return jqList;
 	}
@@ -59,8 +75,15 @@ public class JQAction {
 		jQList = list;
 	}
 	
-	///////////////////////////////////////////////////
+	public String getEname() {
+		return ename;
+	}
+	
+	public void setEname(String ename) {
+		this.ename = ename;
+	}
 
+	///////////////////////////////////////////////////
 
 	public String findJQLB(){
 		
@@ -80,7 +103,7 @@ public class JQAction {
 			DecimalFormat df = new DecimalFormat("######0.00");   
 			
 			jq.setSc(String.valueOf(df.format(time)));
-			jq.setZt("同意");
+			jq.setZt("待审批");
 			dao.saveJQ(jq);
 			
 			return "success";
@@ -92,11 +115,42 @@ public class JQAction {
 	}
 	
 	public String showJQ(){
-		List list = globalDao.findAllList("Jq");
 		
-		jQList = list;
 		
-		return "success";
+		try {
+			auth = new String(auth.getBytes("ISO8859-1"),"UTF-8");
+			ename = new String(ename.getBytes("ISO8859-1"),"UTF-8");
+	
+			
+		} catch (UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		if(auth.equals("管理员")){
+			//
+			List list = globalDao.findAllList("Jq");
+			
+			
+			jQList = list;
+			return "success";
+			
+		}else {
+
+			List list = globalDao.findOneList("Jq", ename);			
+			
+			jQList = list;
+			
+			return "success";
+		}
+		
+		
+		
+		
 	}
+
+
+	
 	
 }

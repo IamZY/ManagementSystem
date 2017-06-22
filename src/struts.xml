@@ -78,10 +78,8 @@
 		
 		
 		<action name="saveTXAction" class="com.action.TXAction" method="saveTX">
-			<!-- 
-			<result name="success" type="chain">showTXAction</result>
-			 -->
-			<result name="success">/index.jsp</result>			 
+			<result name="success">/index.jsp</result>
+			<result name="false">/tiaoxiu.jsp</result>			 
 		</action>
 		
 		
@@ -101,6 +99,43 @@
 		<action name="showSJZDAction" class="com.action.SJZDAction" method="showSJZD">
 			<result name="success">/sjzdList.jsp</result>
 		</action>
+		
+		
+		<action name="updateSJZDAction" class="com.action.SJZDAction" method="updateSJZD">
+			<result name="success" type="chain">showSJZDAction</result>
+		</action>
+		
+		<action name="addSJZDAction" class="com.action.SJZDAction" method="addSJZD">
+			<result name="success" type="chain">showSJZDAction</result>
+		</action>
+		
+		
+		<action name="delSJZDAction" class="com.action.SJZDAction" method="delSJZD">
+			<result name="success" type="chain">showSJZDAction</result>
+		</action>
+		
+		
+		<!-- 添加员工 -->
+		<action name="tjygAction" class="com.action.EmpAction" method="tjyg">
+			<result name="success">/tjyg.jsp</result>
+		</action>
+		
+		
+		<action name="addEmpAction" class="com.action.EmpAction" method="addEmp">
+			<result name="success">/index.jsp</result>
+		</action>
+		
+		<!-- 审批 -->
+		<action name="SPAction" class="com.action.SPAction" method="showSP">
+			<result name="success">/spxx.jsp</result>
+		</action>
+		
+		
+		<action name="updateSPAction" class="com.action.SPAction" method="updateSP">
+			<result name="success" type="chain">SPAction</result>
+		</action>		
+		
+		
 		
 	</package>
 </struts>

@@ -9,6 +9,9 @@ import org.hibernate.Transaction;
 import sun.print.resources.serviceui;
 
 import com.domain.Chuchai;
+import com.domain.Employee;
+import com.domain.SP;
+import com.domain.Sjzd;
 import com.hibernate.HibernateSessionFactory;
 
 public class CCDao {
@@ -88,6 +91,43 @@ public class CCDao {
 	
 	
 	
+	public List CCSP(){
+		
+		Session session = HibernateSessionFactory.getSession();
+		
+		String hql = "select cno,sqr,txry,zt from Chuchai where zt='´ýÉóÅú'";
+		Query query = session.createQuery(hql);
+		
+		
+		List list = query.list();
+		
+		session.close();
+		return list;
+	}
+	
+	
+	public boolean updateCC(SP sp){
+		
+		Session session = HibernateSessionFactory.getSession();
+		Transaction tx = session.beginTransaction();
+		
+		String hql="update Chuchai set zt=?,spr=? where cno=?";
+		
+		Query query = session.createQuery(hql);
+		
+		query.setString(0, sp.getZt());
+		query.setString(1, sp.getSpr());
+		query.setLong(2, sp.getSpno());
+		
+		query.executeUpdate();
+		
+		tx.commit();
+		session.close();
+		
+		return true;
+	}
+	
+	
 	
 	
 	
@@ -97,6 +137,12 @@ public class CCDao {
 		CCDao ccDao = new CCDao();
 		//System.out.println(ccDao.findCCSC("ê°Ñô"));
 		//System.out.println(ccDao.findAllList("Jq").get(0));
+		List list = ccDao.findTXRY();
+		
+		for (int i = 0;i<list.size();i++) {
+			System.out.println(list.get(i));
+		}
+		
 	}
 	
 }

@@ -41,6 +41,9 @@
 				
 			}); //$("wxsc")
   		
+  			if($("#errMsg").val() == "申请失败"){
+  				alert("申请失败!");
+  			}
   		
   		});
   
@@ -50,6 +53,7 @@
   
   <body>
   	
+  	<input id="errMsg" type="hidden" value="${errMsg }">
 		
 	<div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">		
 		<div class="row">
@@ -73,7 +77,6 @@
 					<div class="panel-heading"><span class="glyphicon glyphicon-envelope"></span>Writing Content</div>
 					<div class="panel-body">
 						<form class="form-horizontal" action="saveTXAction" id="form" method="post">
-							<input type="hidden" name="tx.spr" value="<%=session.getAttribute("ename") %>">
     						<input type="hidden" name="tx.sqr" value="<%=session.getAttribute("ename") %>">
 							<fieldset>
 								<!-- 类别 input-->

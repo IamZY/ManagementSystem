@@ -20,9 +20,13 @@ public class TXAction {
 	private InputStream ajaxInputStream; 
 	private Tiaoxiu tx;
 	private List txList = new ArrayList();
-	
+	private String auth;
+	private String ename;
+	private String errMsg;
 	
 	////////////////////////////////////////////
+	
+	
 	public Tiaoxiu getTx() {
 		return tx;
 	}
@@ -47,8 +51,35 @@ public class TXAction {
 		this.txList = txList;
 	}
 
+	public String getAuth() {
+		return auth;
+	}
+	
+	public void setAuth(String auth) {
+		this.auth = auth;
+	}
+	
+	public String getEname() {
+		return ename;
+	}
+	
+	public void setEname(String ename) {
+		this.ename = ename;
+	}
+	
+	public String getErrMsg() {
+		return errMsg;
+	}
+
+	public void setErrMsg(String errMsg) {
+		this.errMsg = errMsg;
+	}
+	
+	
+	
 	////////////////////////////////////////////////////////
 	
+
 	public String calTx(){
 		
 		//
@@ -96,11 +127,12 @@ public class TXAction {
 	
 	public String saveTX(){
 		
-		if(Double.parseDouble(tx.getTxsc()) < Double.parseDouble(tx.getWxsc())){
-			tx.setZt("ÒÑÉêÇë");
-			txDao.savaTX(tx);
+		if(Double.parseDouble(tx.getTxsc()) <= Double.parseDouble(tx.getWxsc())){
+			tx.setZt("´ýÉóÅú");
+			txDao.saveTX(tx);
 			return "success";
 		}else {
+			errMsg = "ÉêÇëÊ§°Ü";
 			return "false";
 		}
 		
@@ -108,12 +140,43 @@ public class TXAction {
 	
 	public String showTX(){
 		
-		List list = globalDao.findAllList("Tiaoxiu");
+		try {
+			auth = new String(auth.getBytes("ISO8859-1"),"UTF-8");
+			ename = new String(ename.getBytes("ISO8859-1"),"UTF-8");
+	
+			
+		} catch (UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
-		txList = list;
 		
-		return "success";
+		if(auth.equals("¹ÜÀíÔ±")){
+			//
+			
+			List list = globalDao.findAllList("Tiaoxiu");
+			
+			txList = list;
+			
+			return "success";
+			
+		}else {
+
+		
+			List list = globalDao.findOneList("Tiaoxiu", ename);			
+						
+			txList = list;
+			
+			return "success";
+		}
+		
+		
+		
+		
+		
 	}
+
+	
 	
 	
 }

@@ -73,7 +73,13 @@
 								<div class="form-group">
 									<label class="col-md-3 control-label" for="">员工姓名</label>
 									<div class="col-md-9">
-										<input type="text" name="kqb.ygxm" class="form-control">
+										<select name="kqb.ygxm" class="form-control">
+											
+											<s:iterator var="e" value="empList">										
+								    			<option value="${e }">${e }</option>
+											</s:iterator>
+
+								    	</select>
 									</div>
 								</div>
 								

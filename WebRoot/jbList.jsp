@@ -42,6 +42,7 @@
 						<table data-toggle="table" data-show-refresh="true" data-show-toggle="true" data-show-columns="true" data-search="true" data-select-item-name="toolbar1" data-pagination="true" data-sort-name="name" data-sort-order="desc">
 						    <thead>
 						    <tr>
+						    	<th>申请人</th>
 						        <th>申请时间</th>
 				   				<th>加班时间</th>
 				   				<th>加班时长</th>
@@ -51,13 +52,22 @@
 						    </tr>
 						    </thead>
 						    
-						    <s:iterator id="j" value="jbList">
+						    <s:iterator id="j" var="j" value="jbList">
 				   				<tr>
+				   					<td>${j.sqr }</td>
 				   					<td>${j.sqrq }</td>
 					   				<td>${j.jbsc }</td>
 					   				<td>${j.jbrq }</td>
 					   				<td>${j.jbyy }</td>
-					   				<td>${j.zt }</td>
+					   				<td>
+					   					<s:if test='#j.zt=="待审批" || j.zt=="不同意"'>
+					   						<a style="color: red">${j.zt }</a>
+					   					</s:if>
+					   					
+					   					<s:else>
+					   						<a style="color: green">${j.zt }</a>
+					   					</s:else>
+					   				</td>
 					   				<td>${j.spr }</td>
 				   				</tr>
 				   			</s:iterator>

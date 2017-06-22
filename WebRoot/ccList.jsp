@@ -44,6 +44,7 @@
 						<table data-toggle="table" data-show-refresh="true" data-show-toggle="true" data-show-columns="true" data-search="true" data-select-item-name="toolbar1" data-pagination="true" data-sort-name="name" data-sort-order="desc">
 						    <thead>
 						    <tr>
+						    	<th>申请人</th>
 						        <th>出差时间</th>
 				   				<th>出差天数</th>
 				   				<th>同行人员</th>
@@ -55,15 +56,24 @@
 						    </tr>
 						    </thead>
 						    
-						    <s:iterator id="c" value="ccList">
+						    <s:iterator id="c" var="c" value="ccList">
 				   				<tr>
+				   					<td>${c.sqr }</td>
 				   					<td>${c.ccrq }</td>
 					   				<td>${c.ccts }</td>
 					   				<td>${c.txry }</td>
 					   				<td>${c.mdd }</td>
 					   				<td>${c.cxfs }</td>
 					   				<td>${c.ccsy }</td>
-					   				<td>${c.zt }</td>
+					   				<td>
+					   					<s:if test='#c.zt=="待审批" || #c.zt=="不同意"'>
+					   						<a style="color: red">${c.zt }</a>
+					   					</s:if>
+					   					
+					   					<s:else>
+					   						<a style="color: green">${c.zt }</a>
+					   					</s:else>
+					   				</td>
 					   				<td>${c.spr }</td>
 				   				</tr>
 				   			</s:iterator>

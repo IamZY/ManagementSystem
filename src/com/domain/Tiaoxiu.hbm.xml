@@ -28,7 +28,7 @@
             <column name="ZT" length="20" not-null="true" />
         </property>
         <property name="spr" type="java.lang.String">
-            <column name="SPR" length="20" not-null="true" />
+            <column name="SPR" length="20" not-null="false" />
         </property>
         <property name="sqr" type="java.lang.String">
             <column name="SQR" length="20" not-null="true" />

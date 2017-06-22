@@ -45,10 +45,9 @@
 					<div class="panel-heading"><span class="glyphicon glyphicon-envelope"></span>Writing Content</div>
 					<div class="panel-body">
 						<form class="form-horizontal" action="saveCCAction" method="post">
-							<input type="hidden" name="cc.spr" value="<%=session.getAttribute("ename") %>">
     						<input type="hidden" name="cc.sqr" value="<%=session.getAttribute("ename") %>">
 							<fieldset>
-								<!-- 类别 input-->
+							
 								<div class="form-group">
 									<label class="col-md-3 control-label" for="kqsj">出差日期</label>
 									<div class="col-md-9">
@@ -56,7 +55,6 @@
 									</div>
 								</div>
 							
-								<!-- 考勤时间 input-->
 								<div class="form-group">
 									<label class="col-md-3 control-label" for="">出差天数</label>
 									<div class="col-md-9">
@@ -65,24 +63,22 @@
 								</div>
 								
 								
-								<!-- 考勤时段 body -->
 								<div class="form-group">
 									<label class="col-md-3 control-label" for="">同行人员</label>
 									<div class="col-md-9">
-										<select name="cc.txry" multiple="multiple" class="form-control">
-								    		<%
-								    			List list = (List)request.getAttribute("txryList");
-								    			for(int i = 0;i<list.size();i++){
-								    		%>
-								    			<option value="<%=list.get(i) %>"><%=list.get(i) %></option>
-								    		<% 
-								    			}
-								    		 %>
+									
+										<select name="cc.txry" multiple="multiple" size="4" class="form-control">
+											
+											<s:iterator var="t" value="txryList">										
+								    			<option value="${t }">${t }</option>
+											</s:iterator>
+
 								    	</select>
+									 
 									</div>
 								</div>
 								
-								<!-- 考勤说明 body -->
+
 								<div class="form-group">
 									<label class="col-md-3 control-label" for="">目的地</label>
 									<div class="col-md-9">
@@ -90,14 +86,13 @@
 									</div>
 								</div>
 								
-								<!-- 考勤说明 body -->
 								<div class="form-group">
 									<label class="col-md-3 control-label" for="">出行方式</label>
 									<div class="col-md-9">
 										<select name="cc.cxfs" class="form-control">
 								    		<%
 								    			List l = (List)request.getAttribute("ccfsList");
-								    			for(int i = 0;i<list.size();i++){
+								    			for(int i = 0;i<l.size();i++){
 								    		%>
 								    			<option value="<%=l.get(i) %>"><%=l.get(i) %></option>
 								    		<% 

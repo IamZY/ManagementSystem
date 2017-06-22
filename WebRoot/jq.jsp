@@ -44,7 +44,6 @@
 					<div class="panel-heading"><span class="glyphicon glyphicon-envelope"></span>Writing Content</div>
 					<div class="panel-body">
 						<form class="form-horizontal" action="saveJQAction" method="post">
-							<input type="hidden" name="jq.spr" value="<%=session.getAttribute("ename") %>">
     						<input type="hidden" name="jq.sqr" value="<%=session.getAttribute("ename") %>">
 							<fieldset>
 								<!-- 类别 input-->

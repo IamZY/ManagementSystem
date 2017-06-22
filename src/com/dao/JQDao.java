@@ -10,6 +10,7 @@ import org.hibernate.Transaction;
 
 import com.domain.Jq;
 import com.domain.Kqb;
+import com.domain.SP;
 import com.hibernate.HibernateSessionFactory;
 
 public class JQDao {
@@ -75,11 +76,57 @@ public class JQDao {
 	}
 	
 	
+	public List JQSP(){
+			
+		Session session = HibernateSessionFactory.getSession();
+		
+		String hql = "select jqno,sqr,jqyy,zt from Jq where zt='¥˝…Û≈˙'";
+		Query query = session.createQuery(hql);
+		
+		
+		List list = query.list();
+		
+		session.close();
+		return list;
+	}
+	
+	
+	public boolean updateJQ(SP sp){
+		
+		Session session = HibernateSessionFactory.getSession();
+		Transaction tx = session.beginTransaction();
+		
+		String hql="update Jq set zt=?,spr=? where jqno=?";
+		
+		Query query = session.createQuery(hql);
+		
+		query.setString(0, sp.getZt());
+		query.setString(1, sp.getSpr());
+		query.setLong(2, sp.getSpno());
+		
+		query.executeUpdate();
+		
+		tx.commit();
+		session.close();
+		
+		return true;
+	}
+	
+	
 	
 	
 	public static void main(String[] args) {
 		JQDao dao = new JQDao();
 		//System.out.println(dao.findJQSC("Í∞—Ù"));
-		System.out.println(dao.isExit("baoyue"));
+		//System.out.println(dao.isExit("baoyue"));
+		
+		SP sp = new SP();
+		sp.setSpno(new Long(1157));
+		sp.setZt("Õ¨“‚");
+		sp.setSpr("Í∞—Ù");
+		
+		
+		dao.updateJQ(sp);
+		
 	}
 }

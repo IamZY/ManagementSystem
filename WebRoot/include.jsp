@@ -11,6 +11,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 
 <%@ taglib prefix ="s" uri="/struts-tags"%>
+
 <script type="text/javascript" src="<%=basePath %>/My97DatePicker/WdatePicker.js"></script> 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
@@ -36,7 +37,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				//console.log(auth);
 				if(auth != "管理员"){
 					$("#sjzd").hide();
-					$("#kqcx").hide();
+					$("#tjyg").hide();
+					$("#kqjl").hide();
+					$("#spxx").hide();
 				}
 				
 				setInterval(function(){   
@@ -73,7 +76,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="#"><span>考勤管理系统</span></a>
+				<a class="navbar-brand" href="index.jsp"><span>考勤管理系统</span></a>
 				<ul class="user-menu">
 					<li class="dropdown pull-right">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -81,7 +84,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<span class="caret"></span></a>
 						<ul class="dropdown-menu" role="menu">
 							<li><a href="#"><span class="glyphicon glyphicon-user"></span>个人资料</a></li>
-							<li><a href="#"><span class="glyphicon glyphicon-cog"></span>页面设置</a></li>
+							<li id="spxx"><a href="SPAction"><span class="glyphicon glyphicon-list-alt"></span>审批信息</a></li>
+							<li id="tjyg"><a href="tjygAction"><span class="glyphicon glyphicon-cog"></span>添加员工</a></li>
 							<li><a href="login.jsp"><span class="glyphicon glyphicon-log-out"></span>退出</a></li>
 						</ul>
 						<a id="currentTime" ></a>
@@ -100,7 +104,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		</form>
 		<ul class="nav menu">
 			<li class="active"><a href="index.jsp"><span class="glyphicon glyphicon-home"></span>主页</a></li>
-			<li><a href="KQAction.action"><span class="glyphicon glyphicon-th"></span>考勤记录</a></li>
+			<li id="kqjl"><a href="KQAction.action"><span class="glyphicon glyphicon-th"></span>考勤记录</a></li>
 			<li><a href="JQAction.action"><span class="glyphicon glyphicon-stats"></span>假期申请</a></li>
 			<li><a href="CCAction.action"><span class="glyphicon glyphicon-list-alt"></span>出差申请</a></li>
 			<li><a href="jiaban.jsp"><span class="glyphicon glyphicon-pencil"></span>加班申请</a></li>
@@ -112,27 +116,27 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				</a>
 				<ul class="children collapse" id="sub-item-1">
 					<li>
-						<a class="" href="showJQAction">
+						<a class="" href="showJQAction.action?auth=<%=auth %>&ename=<%=session.getAttribute("ename") %>">
 							<span class="glyphicon glyphicon-share-alt"></span>请假查询
 						</a>
 					</li>
 					<li>
-						<a class="" href="showCCAction">
+						<a class="" href="showCCAction.action?auth=<%=auth %>&ename=<%=session.getAttribute("ename") %>">
 							<span class="glyphicon glyphicon-share-alt"></span>出差查询
 						</a>
 					</li>
 					<li>
-						<a class="" href="showJBAction">
+						<a class="" href="showJBAction.action?auth=<%=auth %>&ename=<%=session.getAttribute("ename") %>">
 							<span class="glyphicon glyphicon-share-alt"></span>加班查询
 						</a>
 					</li>
 					<li>
-						<a class="" href="showTXAction">
+						<a class="" href="showTXAction.action?auth=<%=auth %>&ename=<%=session.getAttribute("ename") %>">
 							<span class="glyphicon glyphicon-share-alt"></span>调休查询
 						</a>
 					</li>
 					<li>
-						<a class="" href="showKQAction">
+						<a class="" href="showKQAction.action">
 							<span class="glyphicon glyphicon-share-alt"></span>考勤记录
 						</a>
 					</li>
@@ -142,7 +146,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<li role="presentation" class="divider"></li>
 			<li><a href="login.jsp"><span class="glyphicon glyphicon-user"></span> Login Page</a></li>
 		</ul>
-		<div class="attribution">More Templates <a href="http://www.cssmoban.com/" target="_blank" title="模板之家">计141</a> - Collect from <a href="http://www.cssmoban.com/" title="网页模板" target="_blank">臧阳</a></div>
+		<div class="attribution">More Templates <a href="#" target="_blank" title="">计141</a> - Collect from <a href="#" title="" target="_blank">臧阳</a></div>
 	</div><!--/.sidebar-->
   </body>
 </html>

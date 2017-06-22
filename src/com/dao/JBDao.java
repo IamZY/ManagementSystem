@@ -8,13 +8,14 @@ import org.hibernate.Transaction;
 
 import com.domain.Jiaban;
 import com.domain.Jq;
+import com.domain.SP;
 import com.hibernate.HibernateSessionFactory;
 
 public class JBDao {
 
 	
 	
-	public boolean saveJQ(Jiaban jb){
+	public boolean saveJB(Jiaban jb){
 		
 		Session session = HibernateSessionFactory.getSession();
 		
@@ -74,6 +75,45 @@ public class JBDao {
 		return true;
 		
 	}
+	
+	
+	public List JBSP(){
+		
+		Session session = HibernateSessionFactory.getSession();
+		
+		String hql = "select jno,sqr,jbyy,zt from Jiaban where zt='´ýÉóÅú'";
+		Query query = session.createQuery(hql);
+		
+		
+		List list = query.list();
+		
+		session.close();
+		return list;
+	}
+	
+	
+	public boolean updateJB(SP sp){
+		
+		Session session = HibernateSessionFactory.getSession();
+		Transaction tx = session.beginTransaction();
+		
+		String hql="update Jiaban set zt=?,spr=? where jno=?";
+		
+		Query query = session.createQuery(hql);
+		
+		query.setString(0, sp.getZt());
+		query.setString(1, sp.getSpr());
+		query.setLong(2, sp.getSpno());
+		
+		query.executeUpdate();
+		
+		tx.commit();
+		session.close();
+		
+		return true;
+	}
+	
+	
 	
 	public static void main(String[] args) {
 		JBDao dao = new JBDao();

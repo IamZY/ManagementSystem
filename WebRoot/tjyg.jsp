@@ -1,10 +1,15 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+
 <%@ include file="include.jsp" %>
+
+
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
   <head>
     <base href="<%=basePath%>">
     
-    <title>加班申请</title>
+    <title>添加员工</title>
     
 	<meta http-equiv="pragma" content="no-cache">
 	<meta http-equiv="cache-control" content="no-cache">
@@ -16,7 +21,6 @@
 	-->
 
   </head>
-  <script type="text/javascript" src="<%=basePath %>/My97DatePicker/WdatePicker.js"></script>
   
   <body>
   	
@@ -25,13 +29,13 @@
 		<div class="row">
 			<ol class="breadcrumb">
 				<li><a href="#"><span class="glyphicon glyphicon-home"></span></a></li>
-				<li class="active">加班申请</li>
+				<li class="active">添加员工</li>
 			</ol>
 		</div><!--/.row-->
 		
 		<div class="row">
 			<div class="col-lg-12">
-				<h1 class="page-header">加班申请</h1>
+				<h1 class="page-header">添加员工</h1>
 			</div>
 		</div><!--/.row-->
 									
@@ -42,40 +46,54 @@
 				<div class="panel panel-default">
 					<div class="panel-heading"><span class="glyphicon glyphicon-envelope"></span>Writing Content</div>
 					<div class="panel-body">
-						<form class="form-horizontal" action="saveJBAction" method="post">
-    							<input type="hidden" name="jb.sqr" value="<%=session.getAttribute("ename") %>">
+						<form class="form-horizontal" action="addEmpAction" method="post">
 							<fieldset>
-								<!-- 类别 input-->
+							
 								<div class="form-group">
-									<label class="col-md-3 control-label" for="kqsj">申请时间</label>
+									<label class="col-md-3 control-label" for="kqsj">员工姓名</label>
 									<div class="col-md-9">
-										<input type="text" name="jb.sqrq" value="<%=time %>" class="form-control">
+										<input type="text" name="emp.ename" class="form-control"/> 
 									</div>
 								</div>
 							
-								<!-- 考勤时间 input-->
 								<div class="form-group">
-									<label class="col-md-3 control-label" for="">加班日期</label>
+									<label class="col-md-3 control-label" for="">员工密码</label>
 									<div class="col-md-9">
-											<input type="text" name="jb.jbrq" class="form-control" onClick="WdatePicker({dateFmt:'yyyy-MM-dd'})"  /> 
+										<input type="text" name="emp.password" class="form-control"/>
 									</div>
 								</div>
 								
 								
-								<!-- 考勤时段 body -->
 								<div class="form-group">
-									<label class="col-md-3 control-label" for="">加班时长</label>
+									<label class="col-md-3 control-label" for="">员工部门</label>
 									<div class="col-md-9">
-										<input type="text" name="jb.jbsc" class="form-control">个工作日
+										<select name="emp.dept">
+								    		<%
+								    			List deptList = (List)request.getAttribute("deptList");
+								    			for(int i = 0;i<deptList.size();i++){
+								    		%>
+								    			<option value="<%=deptList.get(i) %>"><%=deptList.get(i) %></option>
+								    		<% 
+								    			}
+								    		 %>
+								    	</select>
 									</div>
 								</div>
-
 								
 								<!-- 考勤说明 body -->
 								<div class="form-group">
-									<label class="col-md-3 control-label" for="">加班原因</label>
+									<label class="col-md-3 control-label" for="">员工特权</label>
 									<div class="col-md-9">
-								    	<input type="text" name="jb.jbyy" class="form-control">
+										<select name="emp.auth">
+								    		<%
+								    			List authList = (List)request.getAttribute("authList");
+								    			for(int i = 0;i<authList.size();i++){
+								    		%>
+								    			<option value="<%=authList.get(i) %>"><%=authList.get(i) %></option>
+								    		<% 
+								    			}
+								    		 %>
+								    	</select>
 									</div>
 								</div>
 								

@@ -8,7 +8,9 @@
     <class name="com.domain.Employee" table="EMPLOYEE" schema="SCOTT">
         <id name="empno" type="java.lang.String">
             <column name="EMPNO" length="20" />
-            <generator class="sequence"></generator>
+            <generator class="sequence">
+            	<param name="sequence">BOTH_SEQ</param>
+            </generator>
         </id>
         <property name="ename" type="java.lang.String">
             <column name="ENAME" length="20" not-null="true" />
