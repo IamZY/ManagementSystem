@@ -1,5 +1,12 @@
 # ManagementSystem
 
+## 项目截图
+![images](https://github.com/IamZY/ManagementSystem2.0/blob/master/Images/login.png)
+![images](https://github.com/IamZY/ManagementSystem2.0/blob/master/Images/1.png)
+![images](https://github.com/IamZY/ManagementSystem2.0/blob/master/Images/2.png)
+![images](https://github.com/IamZY/ManagementSystem2.0/blob/master/Images/3.png)
+![images](https://github.com/IamZY/ManagementSystem2.0/blob/master/Images/4.png)
+![images](https://github.com/IamZY/ManagementSystem2.0/blob/master/Images/5.png)
 ## 模块分析
  
 ### 员工表
